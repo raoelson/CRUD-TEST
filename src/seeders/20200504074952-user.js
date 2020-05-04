@@ -4,18 +4,13 @@ const bcrpt = require("bcrypt");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    var newData = [];
-
-    for (let i = 0; i < 10; i++) {
-      const seedData = {
-        username: faker.name.firstName(),
-        email: faker.internet.email(),
-        password: bcrpt.hashSync("12345", 10),
-      };
-      newData.push(seedData);
-    }
-    
-    return queryInterface.bulkInsert('Users', newData, {});
+    return queryInterface.bulkInsert('Users', [
+      {
+        username: "admin",
+        email: "admin@admin.fr",
+        password: bcrpt.hashSync("12345", 10)
+      }
+    ], {});
   },
 
   down: (queryInterface, Sequelize) => {
