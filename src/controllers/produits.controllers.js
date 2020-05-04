@@ -18,7 +18,7 @@ async function ListsProducts(req, res) {
 }
 
 async function registerProduct(req, res){
-    const { nom, prix, description, image } = req.body;
+    const { nom, prix, description } = req.body;
     if (nom == null || prix == null ) {
         return res.status(400).json({ 'error': 'missing parameters' });
     }
@@ -30,8 +30,7 @@ async function registerProduct(req, res){
         await model.Produit.create({
             nom: nom,
             prix: prix,
-            description: description,
-            image: image
+            description: description
         })
           .then((newProduct) => res.status(201).json({
             'newProduct': newProduct
@@ -60,15 +59,14 @@ async function deleteProduct(req, res){
 
 async function updateProduct(req, res){
     const { id } = req.params;
-    const { nom, prix, description, image } = req.body;
+    const { nom, prix, description } = req.body;
     if (nom == null || prix == null ) {
         return res.status(400).json({ 'error': 'missing parameters' });
     }
     await model.Produit.update({
         nom: nom,
         prix: prix,
-        description: description,
-        image: image
+        description: description
     }, 
     {  where: { 'id': id } 
     })
@@ -82,7 +80,7 @@ async function updateProduct(req, res){
 
 async function findBy(req, res) {
     const params = { 'id': req.params.id };
-    const prodData = await findProduct(['id','nom','prix', 'image', 'description'], 
+    const prodData = await findProduct(['id','nom','prix', 'description'], 
                                     params);
     res.status(201).json({
         'product': prodData
