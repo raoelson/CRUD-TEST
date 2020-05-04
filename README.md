@@ -1,5 +1,20 @@
 # CRUD-TEST
 
+## What's inside
+This project is based on the Javascript project and uses these packages :
+• Node js
+• Babel 
+• Express 
+• MySQL
+• Sequelize ORM
+
+## Links
+https://nodejs.org/en/docs/
+https://babeljs.io/
+https://sequelize.org
+https://expressjs.com/
+
+
 ## Get the code
 
 ```
